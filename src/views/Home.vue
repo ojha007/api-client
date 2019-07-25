@@ -30,7 +30,16 @@
             offset-x
           >
             <template v-slot:activator="{ on }">
-              <v-flex dflex xs3 md2 lg2 ma-2 v-on="on">
+              <v-flex
+                dflex
+                xs6
+                md2
+                lg2
+                ma-2
+                v-on="on"
+                v-for="movie in movies"
+                :key="movie.id"
+              >
                 <v-card outlined hover style="padding: 2px">
                   <v-img
                     class="white--text"
@@ -38,8 +47,8 @@
                     src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
                   >
                     <v-card-title class="align-end fill-height">
-                      I'm a title</v-card-title
-                    >
+                      {{ movie.id }}
+                    </v-card-title>
                   </v-img>
                 </v-card>
               </v-flex>
@@ -47,13 +56,24 @@
             <v-card>
               <v-list>
                 <v-list-tile>
-                  P
+                  <v-list-tile-title>
+                    Movie Name
+                  </v-list-tile-title>
+                  <v-list-tile-content>
+                    <p>Content of the movie</p>
+                  </v-list-tile-content>
+                  <v-list-tile-action>
+                    <v-btn flat class="v-btn indigo">
+                      <v-icon>download</v-icon>
+                      <p>Download</p>
+                    </v-btn>
+                  </v-list-tile-action>
                 </v-list-tile>
               </v-list>
             </v-card>
           </v-menu>
 
-          <v-flex dflex xs3 md2 lg2 ma-2>
+          <v-flex dflex xs6 md2 lg2 ma-2>
             <v-card outlined hover style="padding: 2px">
               <v-img
                 class="white--text"
@@ -90,6 +110,14 @@ export default {
       message: false,
       hints: true
     };
+  },
+  mounted() {
+    this.$store.dispatch("fetch_movies");
+  },
+  computed: {
+    movies() {
+      return this.$store.state.movies;
+    }
   }
 };
 </script>

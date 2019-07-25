@@ -11,6 +11,22 @@
             <router-link class="v-btn v-btn--flat v-btn--active" to="/">
               <v-btn flat class="white--text">Home </v-btn>
             </router-link>
+            <v-menu offset-y>
+              <template v-slot:activator="{ on }">
+                <v-btn color="primary" dark flat v-on="on">
+                  Genres
+                </v-btn>
+              </template>
+              <v-list dark>
+                <v-list-tile
+                  v-for="(genre, index) in genres"
+                  :key="index"
+                  @click="changeLocale"
+                >
+                  <v-list-tile-title> {{ genre }}</v-list-tile-title>
+                </v-list-tile>
+              </v-list>
+            </v-menu>
             <v-btn flat class="white--text">HollyWood</v-btn>
             <v-btn flat class="white--text">BollyWood</v-btn>
             <v-btn flat class="white--text">South Movie</v-btn>
@@ -53,13 +69,20 @@ export default {
       languages: [
         { title: "English", flag: "us" },
         { title: "Spanish", flag: "es" }
-      ],
-
+      ]
     };
   },
   methods: {
     changeLocale(locale) {
       console.log(locale);
+    }
+  },
+  mounted() {
+    this.$store.dispatch("fetch_genres");
+  },
+  computed: {
+    genres: function() {
+      return this.$store.state.genres;
     }
   }
 };

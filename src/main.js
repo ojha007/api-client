@@ -6,11 +6,13 @@ import Vuetify from "vuetify";
 import "vuetify/dist/vuetify.min.css";
 import VueI18n from "vue-i18n";
 import FlagIcon from "vue-flag-icon";
+import axios from "axios";
 
 Vue.config.productionTip = false;
 Vue.use(Vuetify);
 Vue.use(VueI18n);
 Vue.use(FlagIcon);
+axios.defaults.baseURL = "http://127.0.0.1:8000/api/v1";
 
 new Vue({
   router,
