@@ -2,15 +2,15 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./route/router";
 import store from "./store/store";
-import "bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "@fortawesome/fontawesome-free/css/all.min.css";
+import Vuetify from "vuetify";
+import "vuetify/dist/vuetify.min.css";
 import VueI18n from "vue-i18n";
 import FlagIcon from "vue-flag-icon";
-import "flag-icon-css/css/flag-icon.css";
-Vue.use(FlagIcon);
-Vue.use(VueI18n);
+
 Vue.config.productionTip = false;
+Vue.use(Vuetify);
+Vue.use(VueI18n);
+Vue.use(FlagIcon);
 
 new Vue({
   router,

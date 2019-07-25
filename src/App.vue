@@ -1,11 +1,12 @@
 <template>
-  <div id="app">
-    <Toolbar></Toolbar>
-  </div>
+  <v-app>
+    <Navbar />
+    <router-view />
+  </v-app>
 </template>
 <script>
-import Toolbar from "./components/Toolbar";
+import Navbar from "./layouts/Navbar";
 export default {
-  components: { Toolbar }
+  components: { Navbar }
 };
 </script>
