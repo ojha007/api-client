@@ -2,22 +2,21 @@
   <div class="navbar">
     <v-container fluid pa-0>
       <v-flex>
-        <v-toolbar dark height="90">
+        <v-toolbar class="grey darken-4" height="70">
           <v-toolbar-title>
-            <img src="@/assets/main.jpg" alt="Movie Hint" height="100" />
+            <img src="@/assets/main.jpg" alt="Movie Hint" height="70" />
           </v-toolbar-title>
           <v-spacer></v-spacer>
-          <v-toolbar-items class="hidden-sm-and-down">
-            <router-link to="/" class="v-btn v-btn--flat v-btn--active">
-              <v-btn flat>Home </v-btn>
+          <v-toolbar-items class="hidden-sm-and-down white--text">
+            <router-link class="v-btn v-btn--flat v-btn--active" to="/">
+              <v-btn flat class="white--text">Home </v-btn>
             </router-link>
-
-            <v-btn flat>HollyWood</v-btn>
-            <v-btn flat>BollyWood</v-btn>
-            <v-btn flat>South Movie</v-btn>
-            <v-btn flat>Web Series</v-btn>
-            <router-link to="/about" class="v-btn v-btn--flat v-btn__content">
-              <v-btn flat>
+            <v-btn flat class="white--text">HollyWood</v-btn>
+            <v-btn flat class="white--text">BollyWood</v-btn>
+            <v-btn flat class="white--text">South Movie</v-btn>
+            <v-btn flat class="white--text">Web Series</v-btn>
+            <router-link class="v-btn v-btn--flat v-btn__content" to="/about">
+              <v-btn flat class="white--text">
                 About
               </v-btn>
             </router-link>
@@ -43,21 +42,6 @@
           </v-toolbar-items>
         </v-toolbar>
       </v-flex>
-      <v-carousel
-        cycle
-        height="400"
-        hide-delimiter-background
-        show-arrows-on-hover
-        dark
-      >
-        <v-carousel-item v-for="(slide, i) in slides" :key="i">
-          <v-sheet :color="colors[i]" height="100%">
-            <v-layout align-center fill-height justify-center>
-              <div class="display-3">{{ slide }} Slide</div>
-            </v-layout>
-          </v-sheet>
-        </v-carousel-item>
-      </v-carousel>
     </v-container>
   </div>
 </template>
@@ -70,14 +54,7 @@ export default {
         { title: "English", flag: "us" },
         { title: "Spanish", flag: "es" }
       ],
-      colors: [
-        "indigo",
-        "warning",
-        "pink darken-2",
-        "red lighten-1",
-        "deep-purple accent-4"
-      ],
-      slides: ["First", "Second", "Third", "Fourth", "Fifth"]
+
     };
   },
   methods: {
