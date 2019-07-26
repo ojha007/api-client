@@ -11,21 +11,38 @@
             <router-link class="v-btn v-btn--flat v-btn--active" to="/">
               <v-btn flat class="white--text">Home </v-btn>
             </router-link>
-            <v-menu offset-y>
+            <v-menu
+              offset-y
+              :nudge-width="250"
+              min-width="390"
+              :nudge-top="100"
+              top
+              open-on-hover
+            >
               <template v-slot:activator="{ on }">
                 <v-btn color="primary" dark flat v-on="on">
                   Genres
                 </v-btn>
               </template>
-              <v-list dark>
-                <v-list-tile
-                  v-for="(genre, index) in genres"
-                  :key="index"
-                  @click="changeLocale"
-                >
-                  <v-list-tile-title> {{ genre }}</v-list-tile-title>
-                </v-list-tile>
-              </v-list>
+              <v-card dark width="600">
+                <v-container grid-list-md>
+                  <v-layout wrap>
+                    <v-btn
+                      :key="index"
+                      flat
+                      v-for="(genre, index) in genres"
+                    >
+                      <router-link
+                        class="white--text"
+                        style="text-decoration: none;"
+                        :to="{name: 'genres', params: {slug: genre.slug}}"
+                      >
+                        {{ genre.name }}
+                      </router-link>
+                    </v-btn>
+                  </v-layout>
+                </v-container>
+              </v-card>
             </v-menu>
             <v-btn flat class="white--text">HollyWood</v-btn>
             <v-btn flat class="white--text">BollyWood</v-btn>
@@ -82,7 +99,7 @@ export default {
   },
   computed: {
     genres: function() {
-      return this.$store.state.genres;
+      return this.$store.state.genres.genres;
     }
   }
 };

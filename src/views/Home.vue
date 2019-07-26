@@ -19,7 +19,7 @@
       <v-container pa-0>
         <h2 class="white--text px-2">Recently Added</h2>
         <hr />
-        <v-layout class="mt-3">
+        <div class="mt-3">
           <v-menu
             open-on-hover
             origin="center center"
@@ -30,63 +30,33 @@
             offset-x
           >
             <template v-slot:activator="{ on }">
-              <v-flex
-                dflex
-                xs6
-                md2
-                lg2
-                ma-2
-                v-on="on"
-                v-for="movie in movies"
-                :key="movie.id"
-              >
-                <v-card outlined hover style="padding: 2px">
-                  <v-img
-                    class="white--text"
-                    height="200px"
-                    src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
-                  >
-                    <v-card-title class="align-end fill-height">
-                      {{ movie.id }}
-                    </v-card-title>
-                  </v-img>
-                </v-card>
-              </v-flex>
-            </template>
-            <v-card>
-              <v-list>
-                <v-list-tile>
-                  <v-list-tile-title>
-                    Movie Name
-                  </v-list-tile-title>
-                  <v-list-tile-content>
-                    <p>Content of the movie</p>
-                  </v-list-tile-content>
-                  <v-list-tile-action>
-                    <v-btn flat class="v-btn indigo">
-                      <v-icon>download</v-icon>
-                      <p>Download</p>
-                    </v-btn>
-                  </v-list-tile-action>
-                </v-list-tile>
-              </v-list>
-            </v-card>
-          </v-menu>
-
-          <v-flex dflex xs6 md2 lg2 ma-2>
-            <v-card outlined hover style="padding: 2px">
-              <v-img
-                class="white--text"
-                height="200px"
-                src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
-              >
-                <v-card-title class="align-end fill-height">
-                  I'm a title</v-card-title
+              <v-layout wrap align-center justify-center row fill-heigh>
+                <v-flex
+                  xs5
+                  md2
+                  class="myList"
+                  ma-2
+                  v-on="on"
+                  v-for="movie in movies"
+                  :key="movie.id"
                 >
-              </v-img>
-            </v-card>
-          </v-flex>
-        </v-layout>
+                  <v-card outlined hover style="padding: 2px">
+                    <v-img
+                      class="white--text"
+                      height="200px"
+                      src="https://picsum.photos/id/11/500/300"
+                      lazy-src="https://picsum.photos/id/11/10/6"
+                    >
+                      <v-card-title class="align-end fill-height">
+                        {{ movie.title }}
+                      </v-card-title>
+                    </v-img>
+                  </v-card>
+                </v-flex>
+              </v-layout>
+            </template>
+          </v-menu>
+        </div>
       </v-container>
     </v-container>
   </div>
@@ -116,8 +86,20 @@ export default {
   },
   computed: {
     movies() {
-      return this.$store.state.movies;
+      return this.$store.state.movies.movies;
     }
   }
 };
 </script>
+<style>
+@media (min-width: 1264px) {
+  .myList {
+    -ms-flex-preferred-size: 12.666666666666664%;
+    flex-basis: 16.666666666666664%;
+    -webkit-box-flex: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+    max-width: 12.666667% !important;
+  }
+}
+</style>
