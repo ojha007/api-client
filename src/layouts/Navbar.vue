@@ -49,6 +49,14 @@
                 About
               </v-btn>
             </router-link>
+            <v-text-field
+              class="mx-2 mt-2"
+              flat
+              hide-details
+              label="Search"
+              prepend-inner-icon="search"
+              solo-inverted
+            ></v-text-field>
             <v-menu offset-y>
               <template v-slot:activator="{ on }">
                 <v-btn color="primary" dark flat v-on="on">
@@ -68,14 +76,6 @@
                 </v-list-tile>
               </v-list>
             </v-menu>
-            <v-text-field
-              class="mx-2 mt-2"
-              flat
-              hide-details
-              label="Search"
-              prepend-inner-icon="search"
-              solo-inverted
-            ></v-text-field>
           </v-toolbar-items>
         </v-toolbar>
       </v-flex>
@@ -109,8 +109,10 @@ export default {
 };
 </script>
 <style>
-.theme--light.v-text-field--solo-inverted.v-text-field--solo>.v-input__control>.v-input__slot {
-    background: white !important;
+.theme--light.v-text-field--solo-inverted.v-text-field--solo
+  > .v-input__control
+  > .v-input__slot {
+  background: white !important;
 }
 .v-text-field.v-text-field--solo .v-label {
   color: black !important;

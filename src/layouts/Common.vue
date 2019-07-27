@@ -1,34 +1,46 @@
 <template xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
   <div class="mt-3 mb-3">
-    <v-layout wrap align-center justify-center row fill-heigh>
-      <v-flex
-        xs5
-        md2
-        class="myList"
-        ma-2
-        v-for="movie in movies"
-        :key="movie.id"
+    <v-tabs>
+      <v-tabs
+        class="white--text px-2 pt-3 font-weight-bold"
+        aria-disabled="true"
+        >{{ title }}</v-tabs
       >
-        <v-card outlined hover style="padding: 2px">
-          <v-img
-            :alt="movie.title"
-            lazy-src="https://picsum.photos/id/11/10/6"
-            class="white--text"
-            height="200px"
-            :src="imageURL + movie.poster_image2"
+      <v-tab class="white--text">All</v-tab>
+      <v-tab class="white--text">Horror</v-tab>
+      <v-tab class="white--text">Sci-Fi</v-tab>
+      <v-tab-item v-for="n in 3" :key="n">
+        <v-layout wrap align-center justify-center row fill-heigh>
+          <v-flex
+            xs5
+            md2
+            class="myList"
+            ma-2
+            v-for="movie in movies"
+            :key="movie.id"
           >
-            <v-card-title class="align-end fill-height myBackground">
-              {{ movie.title }}
-            </v-card-title>
-          </v-img>
-        </v-card>
-      </v-flex>
-    </v-layout>
+            <v-card outlined hover style="padding: 2px">
+              <v-img
+                :alt="movie.title"
+                lazy-src="https://picsum.photos/id/11/10/6"
+                class="white--text"
+                height="200px"
+                :src="image + movie.poster_image1"
+              >
+                <v-card-title class="align-end fill-height myBackground">
+                  {{ movie.title }}
+                </v-card-title>
+              </v-img>
+            </v-card>
+          </v-flex>
+        </v-layout>
+      </v-tab-item>
+    </v-tabs>
   </div>
 </template>
 <script>
 export default {
   name: "common",
-  props: ["imageURL", "movies"]
+  props: ["image", "movies", "title"]
 };
 </script>

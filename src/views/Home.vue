@@ -60,7 +60,7 @@
                       lazy-src="https://picsum.photos/id/11/10/6"
                       class="white--text"
                       height="200px"
-                      :src="imageURL + movie.poster_image1"
+                      :src="image + movie.poster_image1"
                     >
                       <v-card-title class="align-end fill-height myBackground">
                         {{ movie.title }}
@@ -72,16 +72,18 @@
             </v-tab-item>
           </v-tabs>
         </div>
-        <h2 class="white--text px-2">Recently Added Movies</h2>
-        <hr />
-        <common :movies="recently_added_movies" :imgUrl="imageURL"></common>
-
-        <h2 class="white--text px-2">Top Imbd Movies</h2>
-        <hr />
-        <common :movies="top_rated_movies" :imgURL="imageURL"></common>
-        <h2 class="white--text px-2">Tv Series</h2>
-        <hr />
-        <common :movies="tv_series" :imageURL="imageURL"></common>
+        <common
+          :movies="recently_added_movies"
+          title="Recently Added Movies"
+          :image="image"
+        >
+        </common>
+        <common
+          :movies="top_rated_movies"
+          :image="image"
+          title="Top Imbd Movies"
+        ></common>
+        <common :movies="tv_series" :image="image" title="Tv Series"></common>
       </v-container>
     </v-container>
   </div>
@@ -94,7 +96,7 @@ export default {
   components: { Common },
   data: function() {
     return {
-      imageURL: "http://127.0.0.1:8000/storage/poster-image1/",
+      image: "http://127.0.0.1:8000/storage/poster-image1/",
       featuredImageURL: "http://127.0.0.1:8000/storage/poster-image/",
       fav: true,
       showDetail: false,
