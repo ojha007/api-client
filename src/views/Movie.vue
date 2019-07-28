@@ -3,6 +3,9 @@
     <v-container class="grey darken-3" fluid>
       <v-container class="pa-0">
         <v-layout>
+          <div v-if="movies_by_genres.length < 1">
+
+          </div>
           <v-flex>
             <h1 class="white--text">All Movies</h1>
             <hr />
@@ -21,7 +24,7 @@
                       <v-img
                         class="white--text"
                         height="200px"
-                        src="https://i.pinimg.com/originals/1b/a0/f6/1ba0f667816027598e935fdb5def49c9.jpg"
+                        :src="image + movie.poster_image1"
                         lazy-src="https://picsum.photos/id/11/10/6"
                       >
                         <v-card-title class="align-end fill-height">
@@ -46,8 +49,21 @@
 </template>
 <script>
 export default {
+  data() {
+    return {
+      image: "http://127.0.0.1:8000/storage/poster-image1/",
+      msg: "Loading",
+      html: '<i class="fa fa-cog fa-spin fa-3x fa-fw"></i>'
+    };
+  },
+  watch: {
+    $route(to, from) {
+      this.$store.dispatch("fetch_movies_by_genres", to.params.slug);
+    }
+  },
+
   mounted: function() {
-    this.$store.dispatch("fetch_movies_by_genres");
+    this.$store.dispatch("fetch_movies_by_genres", this.$route.params.slug);
   },
   computed: {
     movies_by_genres() {

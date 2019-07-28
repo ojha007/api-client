@@ -12,6 +12,7 @@ const actions = {
     axios
       .get("/genres")
       .then(({ data }) => {
+
         commit("FETCH_GENRES", data);
       })
       .catch(err => {

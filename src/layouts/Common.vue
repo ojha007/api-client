@@ -38,6 +38,11 @@
     </v-tabs>
   </div>
 </template>
+<style scoped>
+.v-sheet {
+  border-radius: 15px !important;
+}
+</style>
 <script>
 export default {
   name: "common",

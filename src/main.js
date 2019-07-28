@@ -7,6 +7,9 @@ import "vuetify/dist/vuetify.min.css";
 import VueI18n from "vue-i18n";
 import FlagIcon from "vue-flag-icon";
 import axios from "axios";
+import BlockUI from "vue-blockui";
+
+Vue.use(BlockUI);
 
 Vue.config.productionTip = false;
 Vue.use(Vuetify);

@@ -57,10 +57,11 @@ const actions = {
         console.log(err);
       });
   },
-  fetch_movies_by_genres: function({ commit }) {
+  fetch_movies_by_genres: function({ commit }, slug) {
     axios
-      .get("/genre/comedy")
+      .get("/genre/" + slug)
       .then(res => {
+        console.log(slug);
         commit("FETCH_MOVIES_BY_GENRES", res.data);
       })
       .catch(err => {

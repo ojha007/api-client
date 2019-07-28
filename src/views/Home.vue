@@ -5,7 +5,6 @@
       height="500"
       hide-delimiter-background
       show-arrows-on-hover
-      dark
     >
       <v-carousel-item
         v-for="(featured_movie, $index) in featured_movies"
@@ -16,7 +15,7 @@
           :alt="featured_movie.title"
           lazy-src="https://picsum.photos/id/11/10/6"
           class="white--text v-image__image v-image__image--cover"
-          :src="featuredImageURL + featured_movie.poster_path"
+          :src="image + featured_movie.poster_image1"
           aspect-ratio="1"
         >
           <v-responsive dark>
@@ -40,36 +39,31 @@
       <v-container pa-0>
         <div class="mt-3 mb-3">
           <v-tabs background-color="none">
+            <v-tab class="white--text px-2 font-weight-bold" disabled >SUGGESTIONS</v-tab>
+            <v-tab class="white--text"> Recommended</v-tab>
+            <v-tab class="white--text"> Hot this week </v-tab>
+            <v-tab class="white--text"> Hot this month</v-tab>
+            <v-tab class="white--text"> Most favorite</v-tab>
+
+            <v-tab-item>
+              <tab-list :movies="upcoming_movies" :image="image"></tab-list>
+            </v-tab-item>
+            <v-tab-item>
+              <tab-list :movies="tv_series" :image="image"></tab-list>
+            </v-tab-item>
+            <v-tab-item>
+              <tab-list :movies="upcoming_movies" :image="image"></tab-list>
+            </v-tab-item>
+          </v-tabs>
+
+          <v-tabs>
             <v-tab class="white--text px-2" disabled>UpComing Movies</v-tab>
             <v-tab class="white--text"> All</v-tab>
             <v-tab class="white--text">Horror</v-tab>
             <v-tab class="white--text">Sci-Fi</v-tab>
 
             <v-tab-item>
-              <v-layout wrap align-center justify-center row fill-heigh>
-                <v-flex
-                  xs5
-                  md2
-                  class="myList"
-                  ma-2
-                  v-for="movie in upcoming_movies"
-                  :key="movie.id"
-                >
-                  <v-card outlined hover style="padding: 2px">
-                    <v-img
-                      :alt="movie.title"
-                      lazy-src="https://picsum.photos/id/11/10/6"
-                      class="white--text"
-                      height="200px"
-                      :src="image + movie.poster_image1"
-                    >
-                      <v-card-title class="align-end fill-height myBackground">
-                        {{ movie.title }}
-                      </v-card-title>
-                    </v-img>
-                  </v-card>
-                </v-flex>
-              </v-layout>
+              <tab-list :movies="upcoming_movies" :image="image"></tab-list>
             </v-tab-item>
             <v-tab-item>
               <tab-list :movies="tv_series" :image="image"></tab-list>
