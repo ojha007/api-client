@@ -1,14 +1,14 @@
 <template xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
   <div class="mt-3 mb-3">
     <v-tabs>
-      <v-tabs
-        class="white--text px-2 pt-3 font-weight-bold"
-        aria-disabled="true"
-        >{{ title }}</v-tabs
-      >
-      <v-tab class="white--text">All</v-tab>
-      <v-tab class="white--text">Horror</v-tab>
-      <v-tab class="white--text">Sci-Fi</v-tab>
+      <div v-if="tab === false">
+        <v-tab class="white--text font-weight-bold" aria-disabled="true"
+          >{{ title }}
+        </v-tab>
+        <v-tab class="white--text">All</v-tab>
+        <v-tab class="white--text">Horror</v-tab>
+        <v-tab class="white--text">Sci-Fi</v-tab>
+      </div>
       <v-tab-item v-for="n in 3" :key="n">
         <v-layout wrap align-center justify-center row fill-heigh>
           <v-flex
@@ -41,6 +41,6 @@
 <script>
 export default {
   name: "common",
-  props: ["image", "movies", "title"]
+  props: ["image", "movies", "title", "tab"]
 };
 </script>

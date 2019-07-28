@@ -44,7 +44,8 @@
             <v-tab class="white--text"> All</v-tab>
             <v-tab class="white--text">Horror</v-tab>
             <v-tab class="white--text">Sci-Fi</v-tab>
-            <v-tab-item v-for="n in 3" :key="n">
+
+            <v-tab-item>
               <v-layout wrap align-center justify-center row fill-heigh>
                 <v-flex
                   xs5
@@ -70,20 +71,33 @@
                 </v-flex>
               </v-layout>
             </v-tab-item>
+            <v-tab-item>
+              <tab-list :movies="tv_series" :image="image"></tab-list>
+            </v-tab-item>
+            <v-tab-item>
+              <tab-list :movies="upcoming_movies" :image="image"></tab-list>
+            </v-tab-item>
           </v-tabs>
         </div>
         <common
           :movies="recently_added_movies"
           title="Recently Added Movies"
           :image="image"
+          :tab="false"
         >
         </common>
         <common
           :movies="top_rated_movies"
           :image="image"
           title="Top Imbd Movies"
+          :tab="false"
         ></common>
-        <common :movies="tv_series" :image="image" title="Tv Series"></common>
+        <common
+          :movies="tv_series"
+          :image="image"
+          :tab="false"
+          title="Tv Series"
+        ></common>
       </v-container>
     </v-container>
   </div>
@@ -91,9 +105,10 @@
 
 <script>
 import Common from "../layouts/Common";
+import TabList from "../layouts/tab-list";
 export default {
   name: "home",
-  components: { Common },
+  components: { TabList, Common },
   data: function() {
     return {
       image: "http://127.0.0.1:8000/storage/poster-image1/",
@@ -103,6 +118,11 @@ export default {
       message: false,
       hints: true
     };
+  },
+  methods: {
+    changeTab: function() {
+      alert("clicked");
+    }
   },
   mounted() {
     this.$store.dispatch("fetch_movies");
