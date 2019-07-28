@@ -1,11 +1,9 @@
 <template xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
   <div class="about">
-    <v-container class="grey darken-3" fluid>
+    <v-container fluid>
       <v-container class="pa-0">
         <v-layout>
-          <div v-if="movies_by_genres.length < 1">
-
-          </div>
+          <div v-if="movies_by_genres.length < 1"></div>
           <v-flex>
             <h1 class="white--text">All Movies</h1>
             <hr />

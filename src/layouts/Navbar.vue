@@ -2,7 +2,7 @@
   <div class="navbar">
     <v-container fluid pa-0>
       <v-flex>
-        <v-toolbar  height="70" dense fixed>
+        <v-toolbar height="70" dense fixed>
           <v-toolbar-title>
             <img src="@/assets/main.jpg" alt="Movie Hint" height="70" />
           </v-toolbar-title>
@@ -30,7 +30,11 @@
               <v-card width="600">
                 <v-container grid-list-md>
                   <v-layout wrap>
-                    <v-flex sm6 md3 class="pa-0 ma-0" v-for="(genre, index) in genres"
+                    <v-flex
+                      sm6
+                      md3
+                      class="pa-0 ma-0"
+                      v-for="(genre, index) in genres"
                       :key="index"
                     >
                       <v-btn
@@ -49,7 +53,6 @@
             </v-menu>
             <v-btn flat class="white--text">HollyWood</v-btn>
             <v-btn flat class="white--text">BollyWood</v-btn>
-            <v-btn flat class="white--text">South Movie</v-btn>
             <v-btn flat class="white--text">Web Series</v-btn>
             <v-btn flat to="/about" class="white--text">
               About

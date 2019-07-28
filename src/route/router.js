@@ -3,6 +3,7 @@ import Router from "vue-router";
 import Home from "../views/Home.vue";
 import About from "../views/About.vue";
 import Movie from "../views/Movie";
+import Single from "../layouts/Single";
 
 Vue.use(Router);
 
@@ -24,6 +25,11 @@ export default new Router({
       path: "/genres/:slug",
       name: "genres",
       component: Movie
+    },
+    {
+      path: "/movie/:slug",
+      name: "movie",
+      component: Single
     }
   ]
 });

@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <v-container class="grey darken-3" fluid>
+    <v-container  fluid>
       <v-container class="pa-0">
         <v-layout>
           <v-flex>

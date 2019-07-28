@@ -8,6 +8,7 @@
         ma-2
         v-for="movie in movies"
         :key="movie.id"
+        @click="detail(movie.id)"
       >
         <v-card outlined hover style="padding: 2px">
           <v-img
@@ -29,6 +30,11 @@
 <script>
 export default {
   name: "tab-list",
-  props: ["image", "movies"]
+  props: ["image", "movies"],
+  methods: {
+    detail(slug) {
+      this.$router.push({ name: "movie", params: { slug: slug } });
+    }
+  }
 };
 </script>

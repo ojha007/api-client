@@ -9,7 +9,8 @@ const state = {
   latest_movies: [],
   upcoming_movies: [],
   top_rated_movies: [],
-  tv_movies: []
+  tv_movies: [],
+  movie_detail: []
 };
 
 const mutations = {
@@ -33,6 +34,9 @@ const mutations = {
   },
   FETCH_TV_MOVIES: function(state, payload) {
     state.tv_movies = payload;
+  },
+  FETCH_MOVIE_DETAIL: function(state, payload) {
+    state.movie_detail = payload;
   }
 };
 const getters = {};
@@ -52,6 +56,17 @@ const actions = {
         commit("FETCH_LATEST_MOVIES", res.data.latest_movies.data);
         commit("FETCH_TOP_RATED_MOVIES", res.data.top_rated_movies.data);
         commit("FETCH_TV_MOVIES", res.data.tv_series.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  },
+  fetch_movie_detail: function({ commit }, slug) {
+    axios
+      .get("movie/" + slug)
+      .then(res => {
+        console.log(res.data);
+        commit("FETCH_MOVIE_DETAIL", res.data);
       })
       .catch(err => {
         console.log(err);

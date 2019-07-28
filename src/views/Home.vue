@@ -14,9 +14,8 @@
         <v-img
           :alt="featured_movie.title"
           lazy-src="https://picsum.photos/id/11/10/6"
-          class="white--text v-image__image v-image__image--cover"
-          :src="image + featured_movie.poster_image1"
-          aspect-ratio="1"
+          class="white--text v-image__image"
+          :src="featuredImageURL + featured_movie.poster_path"
         >
           <v-responsive dark>
             <v-container fill-height>
@@ -35,11 +34,11 @@
         </v-img>
       </v-carousel-item>
     </v-carousel>
-    <v-container fluid class="grey darken-4">
+    <v-container fluid >
       <v-container pa-0>
         <div class="mt-3 mb-3">
-          <v-tabs background-color="none">
-            <v-tab class="white--text px-2 font-weight-bold" disabled >SUGGESTIONS</v-tab>
+          <v-tabs>
+            <v-tab class="white--text px-2 font-weight-bold" disabled>SUGGESTIONS</v-tab>
             <v-tab class="white--text"> Recommended</v-tab>
             <v-tab class="white--text"> Hot this week </v-tab>
             <v-tab class="white--text"> Hot this month</v-tab>
@@ -167,5 +166,8 @@ export default {
 }
 .theme--light.v-tabs__bar .v-tabs__item--disabled {
   color: white !important;
+}
+.theme--dark.v-tabs__bar {
+  background-color: #42424200 !important;
 }
 </style>
