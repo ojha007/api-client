@@ -8,6 +8,7 @@ import VueI18n from "vue-i18n";
 import FlagIcon from "vue-flag-icon";
 import axios from "axios";
 import BlockUI from "vue-blockui";
+import "@mdi/font/css/materialdesignicons.css"; // Ensure you are using css-loader
 
 Vue.use(BlockUI);
 
