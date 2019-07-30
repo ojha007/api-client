@@ -22,18 +22,25 @@
                 >
                 <v-layout wrap class="ma-2 text-md-center">
                   <v-flex md1> Genres :</v-flex>
-                  <v-flex
-                    sm6
-                    md1
+                  <v-list
                     v-for="movie_genres in movie.genres"
                     :key="movie_genres.id"
                   >
-                    {{ movie_genres.name }}
-                  </v-flex>
+                    <router-link
+                      :to="{
+                        name: 'genres',
+                        params: { slug: movie_genres.slug }
+                      }"
+                    >
+                      <v-list-tile-title class="px-1">
+                        {{ movie_genres.name }}
+                      </v-list-tile-title>
+                    </router-link>
+                  </v-list>
                 </v-layout>
                 <v-card-actions>
                   <v-btn-toggle>
-                    <v-btn>Download</v-btn>
+                    <v-btn class="success">Download</v-btn>
                   </v-btn-toggle>
                 </v-card-actions>
               </v-flex>
