@@ -34,63 +34,75 @@
         </v-img>
       </v-carousel-item>
     </v-carousel>
-    <v-container fluid >
+    <v-container fluid>
       <v-container pa-0>
-        <div class="mt-3 mb-3">
-          <v-tabs>
-            <v-tab class="white--text px-2 font-weight-bold" disabled>SUGGESTIONS</v-tab>
-            <v-tab class="white--text"> Recommended</v-tab>
-            <v-tab class="white--text"> Hot this week </v-tab>
-            <v-tab class="white--text"> Hot this month</v-tab>
-            <v-tab class="white--text"> Most favorite</v-tab>
+        <v-flex v-if="loading">
+          <div class="text-xs-center">
+            <v-progress-circular
+              indeterminate
+              color="primary"
+            ></v-progress-circular>
+          </div>
+        </v-flex>
+        <div v-else>
+          <div class="mt-3 mb-3">
+            <v-tabs>
+              <v-tab class="white--text px-2 font-weight-bold" disabled
+                >SUGGESTIONS</v-tab
+              >
+              <v-tab class="white--text"> Recommended</v-tab>
+              <v-tab class="white--text"> Hot this week </v-tab>
+              <v-tab class="white--text"> Hot this month</v-tab>
+              <v-tab class="white--text"> Most favorite</v-tab>
 
-            <v-tab-item>
-              <tab-list :movies="upcoming_movies" :image="image"></tab-list>
-            </v-tab-item>
-            <v-tab-item>
-              <tab-list :movies="tv_series" :image="image"></tab-list>
-            </v-tab-item>
-            <v-tab-item>
-              <tab-list :movies="upcoming_movies" :image="image"></tab-list>
-            </v-tab-item>
-          </v-tabs>
+              <v-tab-item>
+                <tab-list :movies="upcoming_movies" :image="image"></tab-list>
+              </v-tab-item>
+              <v-tab-item>
+                <tab-list :movies="tv_series" :image="image"></tab-list>
+              </v-tab-item>
+              <v-tab-item>
+                <tab-list :movies="upcoming_movies" :image="image"></tab-list>
+              </v-tab-item>
+            </v-tabs>
 
-          <v-tabs>
-            <v-tab class="white--text px-2" disabled>UpComing Movies</v-tab>
-            <v-tab class="white--text"> All</v-tab>
-            <v-tab class="white--text">Horror</v-tab>
-            <v-tab class="white--text">Sci-Fi</v-tab>
+            <v-tabs>
+              <v-tab class="white--text px-2" disabled>UpComing Movies</v-tab>
+              <v-tab class="white--text"> All</v-tab>
+              <v-tab class="white--text">Horror</v-tab>
+              <v-tab class="white--text">Sci-Fi</v-tab>
 
-            <v-tab-item>
-              <tab-list :movies="upcoming_movies" :image="image"></tab-list>
-            </v-tab-item>
-            <v-tab-item>
-              <tab-list :movies="tv_series" :image="image"></tab-list>
-            </v-tab-item>
-            <v-tab-item>
-              <tab-list :movies="upcoming_movies" :image="image"></tab-list>
-            </v-tab-item>
-          </v-tabs>
+              <v-tab-item>
+                <tab-list :movies="upcoming_movies" :image="image"></tab-list>
+              </v-tab-item>
+              <v-tab-item>
+                <tab-list :movies="tv_series" :image="image"></tab-list>
+              </v-tab-item>
+              <v-tab-item>
+                <tab-list :movies="upcoming_movies" :image="image"></tab-list>
+              </v-tab-item>
+            </v-tabs>
+          </div>
+          <common
+            :movies="recently_added_movies"
+            title="Recently Added Movies"
+            :image="image"
+            :tab="false"
+          >
+          </common>
+          <common
+            :movies="top_rated_movies"
+            :image="image"
+            title="Top Imbd Movies"
+            :tab="false"
+          ></common>
+          <common
+            :movies="tv_series"
+            :image="image"
+            :tab="false"
+            title="Tv Series"
+          ></common>
         </div>
-        <common
-          :movies="recently_added_movies"
-          title="Recently Added Movies"
-          :image="image"
-          :tab="false"
-        >
-        </common>
-        <common
-          :movies="top_rated_movies"
-          :image="image"
-          title="Top Imbd Movies"
-          :tab="false"
-        ></common>
-        <common
-          :movies="tv_series"
-          :image="image"
-          :tab="false"
-          title="Tv Series"
-        ></common>
       </v-container>
     </v-container>
   </div>
@@ -109,7 +121,8 @@ export default {
       fav: true,
       showDetail: false,
       message: false,
-      hints: true
+      hints: true,
+      loading: true
     };
   },
   methods: {
@@ -118,7 +131,9 @@ export default {
     }
   },
   mounted() {
-    this.$store.dispatch("fetch_movies");
+    this.$store.dispatch("fetch_movies").then(res => {
+      this.loading = false;
+    });
   },
   computed: {
     recently_added_movies() {

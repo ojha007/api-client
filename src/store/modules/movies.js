@@ -65,7 +65,6 @@ const actions = {
     axios
       .get("movie/" + slug)
       .then(res => {
-        console.log(res.data);
         commit("FETCH_MOVIE_DETAIL", res.data);
       })
       .catch(err => {
