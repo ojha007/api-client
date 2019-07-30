@@ -1,25 +1,47 @@
 <template>
   <v-container style="margin-top: 74px">
-    <v-layout>
-      <v-flex :class="loading ? 'center' : ''">
-        <div class="text-center" v-if="loading">
-          <v-progress-circular
-            indeterminate
-            color="primary"
-          ></v-progress-circular>
-        </div>
-        <v-card v-else>
-          <v-card-media>
-            <img :src="image + movie.poster_image1" :alt="movie.title" />
-            <v-card-text>
-              <v-card-title>
-                {{ movie.title }}
-              </v-card-title>
-            </v-card-text>
-          </v-card-media>
-        </v-card>
-      </v-flex>
-    </v-layout>
+    <v-card>
+      <v-layout py-4 pl-4>
+        <v-flex shrink>
+          <v-img
+            height="300"
+            width="200"
+            :src="image + movie.poster_image1"
+          ></v-img>
+        </v-flex>
+        <v-flex text-center>
+          <v-container grid-list-lg pa-0>
+            <v-layout column>
+              <v-flex>
+                <v-card-title class="text--darken-1">
+                  <h1>{{ movie.title }}</h1></v-card-title
+                >
+                <hr />
+                <v-card-text>
+                  <h4>{{ movie.overview }}</h4></v-card-text
+                >
+                <v-layout wrap class="ma-2 text-md-center">
+                  <v-flex md1> Genres :</v-flex>
+                  <v-flex
+                    sm6
+                    md1
+                    v-for="movie_genres in movie.genres"
+                    :key="movie_genres.id"
+                  >
+                    {{ movie_genres.name }}
+                  </v-flex>
+                </v-layout>
+                <v-card-actions>
+                  <v-btn-toggle>
+                    <v-btn>Download</v-btn>
+                  </v-btn-toggle>
+                </v-card-actions>
+              </v-flex>
+            </v-layout>
+          </v-container>
+        </v-flex>
+      </v-layout>
+    </v-card>
   </v-container>
 </template>
 <script>
@@ -27,28 +49,12 @@ export default {
   name: "single",
   data: function() {
     return {
-      image: "http://127.0.0.1:8000/storage/poster-image1/",
-      loading: true
+      image: "http://127.0.0.1:8000/storage/poster-image1/"
     };
   },
-  watch: {
-    $route(to, from) {
-      console.log(to);
-      this.loading = true;
-      this.$store
-        .dispatch("fetch_movie_detail", this.$route.params.slug)
-        .then(res => {
-          console.log("Loaded");
-          this.loading = false;
-        });
-    }
-  },
+
   mounted() {
-    this.$store
-      .dispatch("fetch_movie_detail", this.$route.params.slug)
-      .then(res => {
-        this.loading = true;
-      });
+    this.$store.dispatch("fetch_movie_detail", this.$route.params.slug);
   },
   computed: {
     movie() {
@@ -57,8 +63,3 @@ export default {
   }
 };
 </script>
-<style scoped>
-.center {
-  text-align: center;
-}
-</style>
